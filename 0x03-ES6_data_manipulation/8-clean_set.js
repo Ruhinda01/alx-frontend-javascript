@@ -1,14 +1,11 @@
 export default function cleanSet(set, startString) {
-  if (!startString || startString.length === 0) {
+  if (!startString || !startString.length) {
     return '';
   }
   let string = '';
   for (const element of set) {
-    if (element.startsWith(startString)) {
-      if (string.length > 0) {
-        string += '-';
-      }
-      string += element.slice(startString.length);
+    if (element && element.startsWith(startString)) {
+      string += string.length === 0 ? element.replace(startString, '') : element.replace(startString, '-');
     }
   }
   return string;
